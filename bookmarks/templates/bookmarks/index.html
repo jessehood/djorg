@@ -1,10 +1,16 @@
 <h1>Bookmarks</h1>
 {% if bookmarks %}
   <ol>
-    {% for bookmarks in bookmarks %}
+    {% for bookmark in bookmarks %}
       <li><a href="{{ bookmark.url }}">{{ bookmark.name }}</a></li>
     {% endfor %}
   </ol>
 {% else %}
   <p>No bookmarks available - you should add some!</p>
 {% endif %}
+
+<form action="/bookmarks/create" method="POST">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit" value="Submit" />
+</form>
