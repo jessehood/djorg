@@ -1,0 +1,23 @@
+{% if bookmark %}
+  <div>
+    <h1>Name</h1>
+    <p>{{ bookmark.name }}</p>
+  </div>
+
+  <div>
+    <h1>URL</h1>
+    <p><a href="{{ bookmark.url }}">{{ bookmark.url }}</a></p>
+  </div>
+
+  <div>
+    <h1>Notes</h1>
+    <p>{{ bookmark.notes }}</p>
+  </div>
+
+  <form action="/bookmarks/delete/{{ bookmark.id }}" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Delete" />
+  </form>
+{% else %}
+  <div>Could not find bookmark.</div>
+{% endif %}
