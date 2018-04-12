@@ -1,26 +1,41 @@
-{% load bootstrap4 %}
+{% extends "base.html" %} 
+{% load bootstrap4 %} 
+{% load humanize %}
+{% block title %}Djorg - Bookmarks{% endblock %} 
 
-{% bootstrap_css %}
-{% bootstrap_javascript jquery='full' %}
+{% block content %}
+  <h1>Bookmarks</h1>
+  {% if bookmarks %}
+    <div class="list-group">
+      {% for bookmark in bookmarks %}
+      <div class="list-group-item list-group-item-action flex-column align-items-start">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">{{ bookmark.name }}</h5>
+          <small>
+            Added {{ bookmark.created_at|naturaltime}} 
+            (Modified {{ bookmark.last_modified|naturaltime }})
+          </small>
+        </div>
+        <p class="mb-1">{{ bookmark.notes }}</p>
+        <small>
+          <a href="{{ bookmark.url }}">{{ bookmark.url }}</a>
+        </small>
+        <div id="button-container" style="margin-top:10px">
+          <a href="/bookmarks/edit/{{ bookmark.id }}" class="btn btn-info" role="button">Edit</a>
+          <a 
+            href="/bookmarks/delete/{{ bookmark.id }}" 
+            class="btn btn-danger" 
+            role="button" 
+            onclick="return confirm('Are you sure you want to delete your {{ bookmark.name }} bookmark?')">
+            Delete
+          </a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>No bookmarks available - you should add some!</p>
+  {% endif %} 
 
-<h1>Bookmarks</h1>
-{% if bookmarks %}
-  <ol>
-    {% for bookmark in bookmarks %}
-        <li>
-          <a href="{{ bookmark.url }}">{{ bookmark.name }}</a> | 
-          <a href="/bookmarks/read/{{ bookmark.id }}">(View)</a>
-        </li> 
-    {% endfor %}
-  </ol>
-{% else %}
-  <p>No bookmarks available - you should add some!</p>
-{% endif %}
-
-<form action="/bookmarks/create" method="POST">
-  {% csrf_token %}
-  {% bootstrap_form form %}
-  {% buttons %}
-  <input type="submit" value="Submit" />
-  {% endbuttons %}
-</form>
+  {% include "bookmarks/form.html" %} 
+{% endblock %}

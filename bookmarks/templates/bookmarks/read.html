@@ -1,3 +1,8 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
+
 {% if bookmark %}
   <div>
     <h1>Name</h1>
@@ -21,3 +26,5 @@
 {% else %}
   <div>Could not find bookmark.</div>
 {% endif %}
+
+{% endblock %}
