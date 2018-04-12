@@ -3,7 +3,9 @@
 {% load humanize %}
 {% block title %}Djorg - Bookmarks{% endblock %} 
 
+
 {% block content %}
+  <script src="/static/bookmarks/js/bookmarks.js" defer></script>
   <h1>Bookmarks</h1>
   {% if bookmarks %}
     <div class="list-group">
