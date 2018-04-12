@@ -1,6 +1,7 @@
 {% extends "base.html" %} 
 {% load bootstrap4 %} 
 {% load humanize %}
+{% load staticfiles %}
 {% block title %}Djorg - Bookmarks{% endblock %} 
 
 
@@ -24,11 +25,9 @@
         </small>
         <div id="button-container" style="margin-top:10px">
           <a href="/bookmarks/edit/{{ bookmark.id }}" class="btn btn-info" role="button">Edit</a>
-          <a 
+          <a class="delete-link btn btn-danger" data-name="{{ bookmark.name }}"
             href="/bookmarks/delete/{{ bookmark.id }}" 
-            class="btn btn-danger" 
-            role="button" 
-            onclick="return confirm('Are you sure you want to delete your {{ bookmark.name }} bookmark?')">
+            role="button">
             Delete
           </a>
         </div>
