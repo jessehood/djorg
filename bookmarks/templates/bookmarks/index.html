@@ -1,3 +1,8 @@
+{% load bootstrap4 %}
+
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+
 <h1>Bookmarks</h1>
 {% if bookmarks %}
   <ol>
@@ -14,6 +19,8 @@
 
 <form action="/bookmarks/create" method="POST">
   {% csrf_token %}
-  {{ form.as_p }}
+  {% bootstrap_form form %}
+  {% buttons %}
   <input type="submit" value="Submit" />
+  {% endbuttons %}
 </form>
