@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'bootstrap4',
     # our apps
     'bookmarks',
+    'notes'
 ]
 
 MIDDLEWARE = [
