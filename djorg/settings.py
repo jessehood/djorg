@@ -143,4 +143,4 @@ PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 PROJECT_DIR = os.path.join(PROJECT_ROOT,'../djorg')
 STATIC_ROOT = os.path.join(PROJECT_DIR,'staticfiles/')
 STATICFILES_DIRS = ()
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'oise.storage.CompressedManifestStaticFilesStorage'oise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
