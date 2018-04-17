@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     # 3rd party apps
     'bootstrap4',
     'rest_framework',
+    'graphene_django',
     # our apps
     'bookmarks',
     'notes'
@@ -86,6 +87,10 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ]
+}
+
+GRAPHENE = {
+    'SCHEMA': 'notes.schema.schema'
 }
 
 WSGI_APPLICATION = 'djorg.wsgi.application'
@@ -138,4 +143,4 @@ PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 PROJECT_DIR = os.path.join(PROJECT_ROOT,'../djorg')
 STATIC_ROOT = os.path.join(PROJECT_DIR,'staticfiles/')
 STATICFILES_DIRS = ()
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'oise.storage.CompressedManifestStaticFilesStorage'oise.storage.CompressedManifestStaticFilesStorage'

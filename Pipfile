@@ -12,6 +12,7 @@ python-decouple = "*"
 whitenoise = "*"
 dj-database-url = "*"
 djangorestframework = "*"
+graphene-django = "*"
 
 [dev-packages]
 
