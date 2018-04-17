@@ -15,7 +15,7 @@ class Query(graphene.ObjectType):
     def resolve_notes(self, info):
         user = info.context.user
         if user.is_anonymous:
-            return NoteModel.obects.none()
+            return NoteModel.objects.none()
         else:
             return NoteModel.objects.filter(user=user)
 

@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import include, path
 from django.views.generic import TemplateView
 from graphene_django.views import GraphQLView 
+from django.views.decorators.csrf import csrf_exempt
 from rest_framework import routers
 from notes.api import NoteViewSet
 
@@ -27,6 +28,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
     path('bookmarks/', include('bookmarks.urls')),
-    path('graphql/', GraphQLView.as_view(graphiql=True)),
+    path('graphql/', csrf_exempt(GraphQLView.as_view(graphiql=True))),
     path('', TemplateView.as_view(template_name='base.html')),
 ]
