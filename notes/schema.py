@@ -1,6 +1,7 @@
 from graphene_django import DjangoObjectType
 import graphene
 from .models import Note as NoteModel
+from djorg.settings import DEBUG
 
 class Note(DjangoObjectType):
     """Transform data to Graphene representation"""
@@ -14,6 +15,8 @@ class Query(graphene.ObjectType):
 
     def resolve_notes(self, info):
         user = info.context.user
+        if DEBUG:
+            return NoteModel.objects.all()
         if user.is_anonymous:
             return NoteModel.objects.none()
         else:
