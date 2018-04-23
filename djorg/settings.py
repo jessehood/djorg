@@ -32,25 +32,31 @@ DEBUG = config('DEBUG') == 'True'
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS').split(',')
 
+SITE_ID = 1
 
 # Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     # 3rd party apps
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.github',
     'bootstrap4',
     'rest_framework',
     'graphene_django',
     'corsheaders',
     # our apps
     'bookmarks',
-    'notes'
+    'notes',
 ]
 
 MIDDLEWARE = [
@@ -129,6 +135,12 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+AUTHENTICATION_BACKENDS = {
+    # Needed to login by username to Django admin, regardless of 'allauth'
+    'django.contrib.auth.backends.ModelBackend',
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+}
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
