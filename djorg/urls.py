@@ -31,4 +31,5 @@ urlpatterns = [
     path('bookmarks/', include('bookmarks.urls')),
     path('graphql/', csrf_exempt(GraphQLView.as_view(graphiql=True))),
     path('', TemplateView.as_view(template_name='base.html')),
+    path('home/', TemplateView.as_view(template_name='base_template.html')),
 ]
