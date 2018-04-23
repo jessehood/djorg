@@ -32,7 +32,7 @@ DEBUG = config('DEBUG') == 'True'
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS').split(',')
 
-SITE_ID = 1
+SITE_ID = 2
 LOGIN_REDIRECT_URL = '/'
 
 # Application definition
