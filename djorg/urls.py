@@ -20,6 +20,8 @@ from graphene_django.views import GraphQLView
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework import routers
 from notes.api import NoteViewSet
+from django.conf import settings
+from django.conf.urls.static import static
 
 router = routers.DefaultRouter()
 router.register(r'notes', NoteViewSet)
@@ -32,4 +34,8 @@ urlpatterns = [
     path('graphql/', csrf_exempt(GraphQLView.as_view(graphiql=True))),
     path('', TemplateView.as_view(template_name='base.html')),
     path('home/', TemplateView.as_view(template_name='base_template.html')),
+    path('filestorage/', include('filestorage.urls')),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

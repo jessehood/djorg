@@ -1,0 +1,39 @@
+{% extends "base_template.html" %} 
+{% load bootstrap4 %} 
+{% load humanize %}
+{% load staticfiles %}
+{% block title %}Djorg - Files{% endblock %} 
+
+
+{% block content %}
+  <h1>Files</h1>
+  {% if files %}
+    <div class="list-group">
+      {% for file in files %}
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{ file.file_name }}</h5>
+            <small>
+              Added {{ file.uploaded_at|naturaltime}} 
+            </small>
+          </div>
+          <p class="mb-1">{{ file.description }}</p>
+          <small>
+            <a href="/media/{{ file.file }}">Click to Download</a>
+          </small>
+          <div id="button-container" style="margin-top:10px">
+            <a class="delete-link btn btn-danger"
+              href="#" 
+              role="button">
+              Delete
+            </a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>No files available - you should add some!</p>
+  {% endif %} 
+
+  {% include "filestorage/form.html" %} 
+{% endblock %}
