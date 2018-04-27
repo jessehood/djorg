@@ -1,6 +1,6 @@
 from uuid import uuid4
 from django.db import models
-
+from django.contrib.auth.models import User
 # Create your models here.
 
 
@@ -11,3 +11,4 @@ class Bookmark(models.Model):
     url           = models.URLField('URL', unique=True)
     created_at    = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
+    user          = models.ForeignKey(User, on_delete=models.CASCADE)
